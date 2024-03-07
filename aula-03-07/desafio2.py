@@ -10,11 +10,10 @@ c = 3
 
 delta = (b ** 2) - 4 * a * c
 
-print(f"Delta:{delta}")
+print(f"Delta: {delta} |", end = " ")
 
-x1 = (-b + math.sqrt(delta)) / (2 * a)
+x1 = (-b + (delta ** (1/2))) / (2 * a)
 x2 = (-b - math.sqrt(delta)) / (2 * a)
 
 
-print(x1)
-print(x2)
+print(f"x1 = {x1} | x2 = {x2}")
