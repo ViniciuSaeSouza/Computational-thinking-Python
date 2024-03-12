@@ -19,3 +19,14 @@
 #     Valor da venda: R${valor_da_venda},00 
 #     Valor final: R${valor_final},00""")
 
+#Narrativa
+# - Pedir a idade 
+idade = int(input("Idade: "))
+# - Se for maior de idade
+if idade >= 18:
+# - Exibir "maior de idade"
+    print("Maior de idade")
+# - Se não for
+else:
+# - Exibir "menor de idade"
+    print("menor de idade")
