@@ -19,7 +19,11 @@
 # Qualquer outro meio de pagamento haverá deconto de 5%.
 
 valor_da_compra = float(input("Digite o valor da compra: "))
-meio_de_pagamento = input("Pagamento: 1- cartão / 2- outros ")
+meio_de_pagamento = input("""
+Pagamento: 
+1- cartão 
+2- outros
+Escolha: """)
 
 if meio_de_pagamento == "1":
     modificador = 0.02
@@ -30,9 +34,9 @@ else:
     modificador_texto = "desconto"
     valor_final = valor_da_compra + (valor_da_compra * modificador)
 print(f"""
-      O valor da sua compra é de: {valor_da_compra}
-      O Valor do {modificador_texto} é de: {modificador * 100}%
-      O valor final é: {valor_final}
-      """)
+O valor da sua compra é de: {valor_da_compra}
+O Valor do {modificador_texto} é de: {modificador * 100}%
+O valor final é: {valor_final} """)
+
 
     
