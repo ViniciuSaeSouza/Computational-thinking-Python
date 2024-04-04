@@ -1,4 +1,4 @@
-import os
+
 # Edson de Oliveira
 # Estamos em uma black friday, há desconto para todo mundo :,). Quem efetuar uma compra até 1000 reais ganhará 100 de cashback, para os demais 200 de cashback. Fazer um algoritmo que exiba o valor original, o valor do cacshback ganho e o desconto com o cacsh back
 
@@ -72,24 +72,67 @@ import os
 
 # Estamos em uma black friday, há desconto para todo mundo :,). Quem efetuar uma compra até 1000 reais ganhará 100 de cashback, para os demais 200 de cashback. Fazer um algoritmo que exiba o valor original, o valor do cashback ganho e o desconto com o cash back
 
-valor_da_compra = float(input("Digite o valor da sua compra: "))
-print("\n*************************************************************************************")
+# valor_da_compra = float(input("Digite o valor da sua compra: "))
+# print("\n*************************************************************************************")
 
-if (valor_da_compra <= 1000.00 and valor_da_compra > 100.00):
-    cashback = 100.00
-    valor_final = valor_da_compra - cashback
-elif (valor_da_compra <= 100.00):
-        cashback = 0
-        valor_final = valor_da_compra
-        print("Adicione mais produtos ao seu carrinho para ganhar a partir de R$ 100,00 em cashback")
-elif (valor_da_compra > 1200.00):
-        cashback = 200.00
-        valor_final = valor_da_compra - cashback
+# if (valor_da_compra <= 1000.00 and valor_da_compra > 100.00):
+#     cashback = 100.00
+#     valor_final = valor_da_compra - cashback
+# elif (valor_da_compra <= 100.00):
+#         cashback = 0
+#         valor_final = valor_da_compra
+#         print("Adicione mais produtos ao seu carrinho para ganhar a partir de R$ 100,00 em cashback")
+# elif (valor_da_compra > 1200.00):
+#         cashback = 200.00
+#         valor_final = valor_da_compra - cashback
 
-print("*************************************************************************************")    
-print(f"""
-Valor original da sua compra: {valor_da_compra}
-Valor do seu cashback: {cashback}
-Valor final da sua compra com desconto: {valor_final}
-    """)
+# print("*************************************************************************************")    
+# print(f"""
+# Valor original da sua compra: {valor_da_compra}
+# Valor do seu cashback: {cashback}
+# Valor final da sua compra com desconto: {valor_final}
+#     """)
 
+
+"""
+3. Peça dois numeros ao usuário e a ordem ("C"rescente ou "D"ecrescente) e exiba
+o intervalo devido.
+Entrada 1: 5  8  D   Saída 1: 8 7 6 5
+Entrada 2: 8  5  C   Saída 2: 5 6 7 8
+"""
+import os
+os.system('cls')
+
+inicio = int(input("Digite o inicio: "))
+fim = int(input("Digite o fim: "))
+mod = inicio
+ordem = str(input(
+"""
+C - Ordem crescente
+D - Ordem decrescente
+Escolha: """
+))
+
+ordemMaiusculo = ordem.capitalize()
+
+if ordemMaiusculo != "C" or ordemMaiusculo != "D":
+        print("Escolha uma opção válida")
+
+if ordemMaiusculo == "C" and inicio < fim:
+        print("Ordem Crescente: ")
+        while inicio <= fim:
+                print(inicio)
+                inicio += 1
+elif ordemMaiusculo == "C" and inicio > fim:
+        while inicio >= fim:
+                print(fim)
+                fim += 1
+elif ordemMaiusculo == "D" and inicio < fim:
+        print("Ordem Decrescente: ")
+        while inicio <= fim:
+                print(fim)
+                fim -= 1
+else:
+        while inicio >= fim:
+                print(inicio)
+                inicio -= 1
