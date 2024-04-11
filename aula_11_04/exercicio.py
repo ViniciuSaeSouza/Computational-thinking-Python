@@ -35,7 +35,7 @@ for i in range(1, 11, 1):
         cp2 = float(input("CP2: "))
     
     cp3 = float(input("CP3: "))
-    while cp3 < 0 or cp3 > 10 or cp3 == str:
+    while cp3 < 0 or cp3 > 10:
         print("Erro, digite um número válido entre 0 e 10")
         cp3 = float(input("CP3: "))
 
