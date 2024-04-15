@@ -34,7 +34,7 @@ alunosNotaMaxima = 0
 
 
 # Pede notas de CheckPoint, Challenge e Global Solution de 10 alunos.
-for i in range(0, 1, 1):
+for i in range(0, 10, 1):
     print("***Notas Checkpoint***")
     # Pede a primeira nota
     cp1 = float(input("1° Nota Checkpoint: "))
