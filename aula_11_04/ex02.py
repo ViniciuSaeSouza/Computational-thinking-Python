@@ -145,7 +145,6 @@ for i in range(0, 10, 1):
     else:
         print(f"Aluno(a) reprovado(a) com nota final: {notaFinal:.1f}")
     
-    # print(f"Nota Global Solution ponderada: {notaPonderadaGlobalSolution}") Mostrar no final
     
 print("**********************************************\n")
 print(f"""
