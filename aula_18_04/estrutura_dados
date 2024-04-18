@@ -1,0 +1,7 @@
+v = [45, 89, 32, 12, 33]
+print(f'Exibe a posiçã 2 do vetor: v[2] = {v[2]}')
+print(f'Exibe o vetor inteiro: V = {v}')
+
+v[0] = 10
+
+print(f"V = {v}")
