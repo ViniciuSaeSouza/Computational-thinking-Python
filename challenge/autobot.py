@@ -42,15 +42,17 @@ try:
 2 - Bateria
 3 - Radiador
 Opção: """))
-                match problema_painel_escolhido: #Identifica a opção escolhida e retorna a descrição correspondente
+                match problema_painel_escolhido: #Identifica a opção escolhida e retorna a descrição correspondente // COMO FAZER O PROGRAMA RETORNAR PARA MENU DE ESCOLHA
                     case 1:
                         print("Descrição de problemas e soluções relacionadas ao óleo")
                     case 2:
                         print("Descrição de problemas e soluções relacionadas a bateria")
                     case 3:
                         print("Descrição de problemas e soluções relacionadas ao radiador")
+                    case _:
+                        print("Opção inválida! digite o número correspondente com a opção desejada.")
             except:
-                print("Opção inválida! digite o número correspondente com a opção desejada.")
+                print("Opção inválida! digite o número correspondente com a opção desejada.")   
         case _:
             print("Opção inválida! digite o número correspondente com a opção desejada.")
 except:
