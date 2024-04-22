@@ -14,6 +14,7 @@ print(
 4 - Sair do programa
 """
 )
+
 # Try catch para a escolha da opção do menu inicial
 try:
     opcao_escolhida = int(input("Digite uma opção: ")) #input da opção do menu escolhida (deve ser int)
