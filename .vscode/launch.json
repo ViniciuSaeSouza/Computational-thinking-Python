@@ -5,6 +5,13 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "type": "java",
+            "name": "larissa",
+            "request": "launch",
+            "mainClass": "larissa",
+            "projectName": "Computational-thinking-Python_142ca3f7"
+        },
+        {
             "name": "Depurador do Python: Arquivo Atual",
             "type": "debugpy",
             "request": "launch",
