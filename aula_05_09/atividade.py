@@ -2,16 +2,12 @@ import os
 os.system('cls')
 
 def verifica_lista_inteiro(list: list) -> bool:
-    inteiros = 0
+    inteiros = True
     for i in range (0, len(list), 1):
         list[i] = str(list[i])
-        if list[i].isnumeric():
-            inteiros += 1
-        else:
+        if not list[i].isnumeric():
             return False
-    if inteiros == len(list):
-        return True
-
+    return inteiros
 
 
 # ----------- programa principal para testar a função
