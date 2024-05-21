@@ -34,12 +34,12 @@ def exibirSubtitulo(texto):
 def infoValida(texto:str, info:str) -> str:
     texto_formatado = texto.capitalize()
 
-    def ehLetraOuNumero(info) -> bool:
+    def ehLetraOuNumero(info: str) -> bool:
         return info.isalpha() or info.isdigit()
 
     if texto == 'ano':
         while not info.isdigit() or not info.strip():
-            print(f"Erro! {texto_formatado} do veículo não pode estar vazio(a), não pode conter letras ou caracteres especiais (@*$...).")
+            print(f"Erro! {texto_formatado} do veículo não pode estar vazio(a), não pode conter letras ou caracteres especiais (@*$-/...).")
             info = input(f"{texto_formatado} do seu veículo: ")
         return info
     
