@@ -1,3 +1,27 @@
+"""
+Código Fonte (Total 70 pontos)
+
+(30 pontos) Implementação/atualização do menu de opções(implementado na Sprint 1), com as principais funcionalidades oferecidas pelo sistema, ao menos um MVP dos itens sugeridos. O programa deve permitir ao usuário escolher uma funcionalidade e fazer a chamada da função correspondente, e após a sua execução, o programa deve retornar para o menu principal.
+
+(10 pontos) O programa deve realizar validações nas entradas de dados do usuário e na manipulação do menu. Será avaliada a aplicação correta dos conceitos de:
+    (5 pontos) Estruturas condicionais e de repetição.
+    (10 pontos) Funções com passagem de parâmetro e retorno.
+    (15 pontos) Armazenamento e manipulação de dados em Listas
+
+Documentação Atualizada (Total 25 pontos):
+
+    (10 pontos) A partir do formato da documentação proposta na Sprint 1, atualizar o Sumário, o Descritivo do Projeto (incluindo as funcionalidades implementadas) e os Anexos que contém o código-fonte e/ou fluxogramas.
+    (15 pontos) Descrever textualmente as mudanças da Sprint 1 para a Sprint 2, ou seja, o que foi acrescentado, alterado ou retirado do projeto.
+
+Formato de Entrega (Total 5 pontos):
+
+    Arquivo compactado (ZIP ou RAR) contendo:
+
+        Arquivo .pdf com a documentação.
+        Arquivo .py com o código fonte do programa.
+"""
+
+
 import os
 lista_numeros = '0123456789'
 
@@ -7,13 +31,16 @@ def limpa_tela():
     os.system('cls' if os.name == 'nt' else 'clear')
 
 
-def tela_inicial():
+def tela_inicial(): #Utilizado site fsymbols.com/letters/
     print(
 """
-****************************
-   BEM VINDO(A) AO AUTOBOT
-   
-****************************
+
+░█████╗░██╗░░░██╗████████╗░█████╗░  ██████╗░░█████╗░████████╗
+██╔══██╗██║░░░██║╚══██╔══╝██╔══██╗  ██╔══██╗██╔══██╗╚══██╔══╝
+███████║██║░░░██║░░░██║░░░██║░░██║  ██████╦╝██║░░██║░░░██║░░░
+██╔══██║██║░░░██║░░░██║░░░██║░░██║  ██╔══██╗██║░░██║░░░██║░░░
+██║░░██║╚██████╔╝░░░██║░░░╚█████╔╝  ██████╦╝╚█████╔╝░░░██║░░░
+╚═╝░░╚═╝░╚═════╝░░░░╚═╝░░░░╚════╝░  ╚═════╝░░╚════╝░░░░╚═╝░░░
 """
 )
     
