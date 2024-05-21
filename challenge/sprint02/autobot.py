@@ -3,50 +3,78 @@ lista_numeros = '0123456789'
 
 veiculos = []
 
-def telaInicial():
+def limpa_tela():
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+
+def tela_inicial():
     print(
 """
 ****************************
-Bem-vindo(a) ao AutoBot!
+   BEM VINDO(A) AO AUTOBOT
+   
 ****************************
 """
 )
     
-def menuOpcoes():
+def menu_opcoes():
     print('1. Cadastrar Veículo')
     print('2. Painel de Problemas')
     print('3. Diário de Bordo')
     print('4. Consultar veículos')
     print('5. Sair do programa')
     nmrOpcoesMenu = 5
-    escolheOpcao(nmrOpcoesMenu)
+    escolhe_opcao(nmrOpcoesMenu)
     
-def exibeSubtitulo(titulo: str) -> str:
+def exibe_subtitulo(titulo: str):
+    limpa_tela()
+    titulo = titulo.upper()
     linha = '*' * (len(titulo) + 5)
     print(linha)
-    print(titulo.upper())
+    # print(titulo.ljust(22)) # --------------------------- PQ NÃO DA O JUSTIFY????????????????
+    print(titulo.center(len(linha)))
     print(linha)
-
-def ehNumeroOuLetra(s: str) -> bool:
-        return s.isalnum()    
     
-def cadastrarVeiculo(titulo: str):
-    os.system('cls')
-    exibeSubtitulo(titulo)
-    #------------------------------------------------------------------------- EMPAQUEI AQUI
-    fabricante = s = input("Fabricante: ")
-    modelo = s = input("Modelo: ")
-    while not ehNumeroOuLetra(s) or not s.strip(): # como faço pra verificar cada input se é letra ou não
-        print(f"Erro!  do veículo não pode estar vazio(a) e não pode conter caracteres especiais (@*$-/...).")
-        s = input('Menu: ')
-    veiculos.append(f': {s}')
-    return s.upper()
+def finaliza_programa():
+    exibe_subtitulo('..Finalizando programa..')
+    exit()
+
+def eh_alphanumeric(s: str) -> bool:
+        return s.isalnum()
+    
+def consultar_veiculos():
+    print(veiculos)
+    match int(input('1. Voltar ao menu principal\n2. Finalizar programa\nMenu: ')):
+        case 1:
+            main()
+        case 2:
+            finaliza_programa()
+    
+def cadastrar_veiculo():
+    limpa_tela()
+    exibe_subtitulo('cadastrar veiculo')
+    atributos_carro = ['Fabricante', 'Modelo', 'Ano', 'Placa']
+    
+    for atributo in atributos_carro:
+        s = input(f'{atributo}: ')
+        while not eh_alphanumeric(s) or not s.strip():
+            print(f"Erro! {atributo} do veículo não pode estar vazio(a) e não pode conter caracteres especiais (@*$-/...).")
+            s = input(f'{atributo}: ')
+        veiculos.append(f'{atributo.upper()}: {s.upper()}')
+        
+    print("\nVeículo cadastrado com sucesso!\nVerificar seus veículos?")
+    match int(input('1. Sim\n2. Não\nMenu: ')):
+        case 1:
+            consultar_veiculos()
+        case 2:
+            main()
+    print(veiculos)
         
 
-def escolheOpcao(nrItens):
+def escolhe_opcao(nrItens):
     opcao = input('Menu: ')
     while True:
-        if  not opcao.isdigit() or int(opcao) > nrItens:
+        if  not opcao.isdigit() or int(opcao) > nrItens or int(opcao) <= 0:
             print('Erro! Digite uma opção válida do menu.')
             opcao = input('Menu: ')
         else:
@@ -55,24 +83,25 @@ def escolheOpcao(nrItens):
     
     match opcao:
         case 1:
-            cadastrarVeiculo('cadastrar veiculo')
+            cadastrar_veiculo()
         case 2:
-            painelDeProblemas()
+            painel_de_problemas() # A FAZER
         case 3:
-            diarioDeBordo()
+            diario_de_bordo() # A FAZER
         case 4:
-            consultarVeiculo()
+            consultar_veiculos()
         case 5:
-            os.system('cls')
+            finaliza_programa()
         case _:
             print("Erro! digite uma opção válida")
                 
             
             
 def main():
-    telaInicial()
-    menuOpcoes()
-    escolheOpcao()
+    limpa_tela()
+    tela_inicial()
+    menu_opcoes()
+    escolhe_opcao(5)
 
 
 if __name__ == '__main__':
