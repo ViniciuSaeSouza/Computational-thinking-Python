@@ -35,14 +35,7 @@ def infoValida(texto:str, info:str) -> str:
     texto_formatado = texto.capitalize()
 
     def ehLetraOuNumero(info) -> bool:
-        contador = 0
-        for letra in info:
-            if letra in lista_letras or letra in lista_numeros:
-                contador += 1
-        if contador == len(info):
-            return True
-        else:
-            return False
+        return info.isalpha() or info.isdigit()
 
     if texto == 'ano':
         while not info.isdigit() or not info.strip():
