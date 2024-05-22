@@ -141,10 +141,7 @@ def consultar_veiculos():
     if veiculos == []:
         print("Você ainda não tem nenhum veículo cadastrado!")
     else:
-        for i,item in enumerate(veiculos):           
-            if i >= 4:
-                i = 0
-            
+        for i,item in enumerate(veiculos):
             print(f'{atributos_carro[i]}: {item.upper()}')#----------------------------------- ARRUMAR INDEX
         print('\n')
         
