@@ -143,6 +143,8 @@ def consultar_veiculos():
     else:
         for i,item in enumerate(veiculos):
             print(f'{atributos_carro[i]}: {item.upper()}')#----------------------------------- ARRUMAR INDEX
+            if i >= 4:
+                i = 0
         print('\n')
         
 
