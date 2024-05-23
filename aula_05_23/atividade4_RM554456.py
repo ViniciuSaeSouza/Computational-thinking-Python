@@ -20,7 +20,7 @@ def intervalo():
     if n2 > maior:
         maior = n2
         menor = n1
-    print('[', end='') # ARRUMAR PRINT DOS COLCHETES
+    print('[', end='') 
     for n in range(menor, maior+1, 1):
         print(f'{n}', end = ' ')
     print(']')
@@ -54,7 +54,7 @@ def intervalo_aberto_fechado():
             if n2 > maior:
                 maior = n2
                 menor = n1
-            print('[', end = '') # ARRUMAR PRINT DOS COLCHETES
+            print('[', end = '') 
             for n in range(menor, maior+1, 1):
                 print(f'{n}', end = ' ')
             print(']')
@@ -64,7 +64,7 @@ def intervalo_aberto_fechado():
             if n2 > maior:
                 maior = n2
                 menor = n1
-            print(']', end='') # ARRUMAR PRINT DOS COLCHETES
+            print(']', end='') 
             for n in range(menor+1, maior, 1):
                 print(f'{n}', end = ' ')
             print('[')
@@ -79,12 +79,12 @@ def intervalo_cres_decres():
     n1 = int(input("Primeiro número: "))
     n2 = int(input('Segundo número: '))
     if n2 < n1:
-        print('[', end = '') # ARRUMAR PRINT DOS COLCHETES
+        print('[', end = '') 
         for n in range(n1, n2-1, -1):
             print(f'{n}', end = ' ')
         print(']')    
     else:
-        print('[', end = '') # ARRUMAR PRINT DOS COLCHETES
+        print('[', end = '') 
         for n in range(n1, n2+1, 1):
             print(f'{n}', end = ' ')
         print(']')
