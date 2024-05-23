@@ -4,12 +4,14 @@ import os
 
 contador = [0,0,0]
 
+lista_intervalo_todos = []
+
 def limpa_tela():
     os.system('cls' if os.name == 'nt' else 'clear')
 
 
 def intervalo():
-    
+    lista_intervalo = []
     limpa_tela()
     print("INTERVALO")
     n1 = int(input("Primeiro número: "))
@@ -20,9 +22,12 @@ def intervalo():
     if n2 > maior:
         maior = n2
         menor = n1
-    print('[', end='') 
+    print('[', end='')
     for n in range(menor, maior+1, 1):
         print(f'{n}', end = ' ')
+        lista_intervalo.append(n)
+    lista_intervalo_todos.append(lista_intervalo)
+    # lista_itervalos.append(n)
     print(']')
 
     contador[0] +=1
@@ -42,6 +47,7 @@ def finalizar_programa():
     exibir_execucao()
 
 def intervalo_aberto_fechado():
+    lista_intervalo = []
     limpa_tela()
     print("INTERVALO ABERTO OU FECHADO")
     n1 = int(input("Primeiro número: "))
@@ -57,7 +63,9 @@ def intervalo_aberto_fechado():
             print('[', end = '') 
             for n in range(menor, maior+1, 1):
                 print(f'{n}', end = ' ')
+                lista_intervalo.append(n)
             print(']')
+            lista_intervalo_todos.append(lista_intervalo)
         case '][':
             maior = n1
             menor = n2
@@ -67,6 +75,8 @@ def intervalo_aberto_fechado():
             print(']', end='') 
             for n in range(menor+1, maior, 1):
                 print(f'{n}', end = ' ')
+                lista_intervalo.append(n)
+            lista_intervalo_todos.append(lista_intervalo)
             print('[')
     contador[1] += 1
     match input("Pressione qualquer tecla para voltar ao menu: "):
@@ -74,6 +84,7 @@ def intervalo_aberto_fechado():
             main()
 
 def intervalo_cres_decres():
+    lista_intervalo = []
     limpa_tela()
     print('INTERVALO CRESCENTE OU DECRESCENTE')
     n1 = int(input("Primeiro número: "))
@@ -82,11 +93,15 @@ def intervalo_cres_decres():
         print('[', end = '') 
         for n in range(n1, n2-1, -1):
             print(f'{n}', end = ' ')
+            lista_intervalo.append(n)
+        lista_intervalo_todos.append(lista_intervalo)
         print(']')    
     else:
         print('[', end = '') 
         for n in range(n1, n2+1, 1):
             print(f'{n}', end = ' ')
+            lista_intervalo.append(n)
+        lista_intervalo_todos.append(lista_intervalo)
         print(']')
     contador[2] += 1
     match input("Pressione qualquer tecla para voltar ao menu: "):
