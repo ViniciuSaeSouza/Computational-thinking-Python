@@ -140,11 +140,9 @@ def consultar_veiculos():
                     
     if veiculos == []:
         print("Você ainda não tem nenhum veículo cadastrado!")
-    else:
+    else:   
         for i,item in enumerate(veiculos):
-            print(f'{atributos_carro[i]}: {item.upper()}')#----------------------------------- ARRUMAR INDEX
-            if i >= 4:
-                i = 0
+            print(f'Carro {i+1} -: {item}')
         print('\n')
         
 
@@ -159,25 +157,28 @@ def consultar_veiculos():
 def cadastrar_veiculo():
     limpa_tela()
     exibe_subtitulo('cadastrar veiculo')
-    
+    lista_veiculo = []
     for atributo in atributos_carro:
         s = input(f'{atributo}: ')
         while not eh_alphanumeric(s) or not s.strip():
             print(f"Erro! {atributo} do veículo não pode estar vazio(a) e não pode conter caracteres especiais (@*$-/...).")
             s = input(f'{atributo}: ')
-        veiculos.append(f'{s.upper()}')
+        lista_veiculo.append(f'{s.upper()}')
+    veiculos.append(lista_veiculo)
         
-    print("\nVeículo cadastrado com sucesso!\nVerificar seus veículos?")   
-    escolha = input('1. Sim\n2. Não\nEscolha: ')
-    while not eh_int(escolha) or int(escolha) > 2:
+    print("\nVeículo cadastrado com sucesso!")   
+    escolha = input('1. Verificar veículos cadastrados\n2. Cadastrar novo veículo\n3. Menu principal\nEscolha: ')
+    while not eh_int(escolha) or int(escolha) > 3:
         print('Opção inválida! digite novamente')
-        escolha =  input('1. Sim\n2. Não\nEscolha: ')
+        escolha =  input('1. Verificar veículos cadastrados\n2. Cadastrar novo veículo\n3. Menu principal\nEscolha: ')
     else:
         escolha = int(escolha)
         match escolha:
             case 1:
                 consultar_veiculos()
             case 2:
+                cadastrar_veiculo()
+            case 3:
                 main()
     
 
@@ -201,29 +202,33 @@ def painel_problemas():
         i+=1
         print(f'{i}. {s}')
     print(f'{i+1}. Voltar ao menu principal: ')
-    match int(input("Escolha: ")):
-        case 1:
+    escolha = input('Escolha: ')
+    match escolha:
+        case '1':
             exibe_subtitulo('Superaquecimento')
             print(problemas_info_superaquecimento)
             escolhe_painel()
-        case 2:
+        case '2':
             exibe_subtitulo('Pane elétrica')
             print(problemas_info_pane_eletrica)
             escolhe_painel()
-        case 3:
+        case '3':
             exibe_subtitulo('Problemas no câmbio')
             print(problemas_info_problemas_cambio)
             escolhe_painel()
-        case 4:
+        case '4':
             exibe_subtitulo('Bateria ruim')
             print(problemas_info_bateria)
             escolhe_painel()
-        case 5:
+        case '5':
             exibe_subtitulo('Falta de combustível')
             print(problemas_info_falta_combustivel)
             escolhe_painel()
-        case 6:
+        case '6':
             main()
+        case _:
+            painel_problemas()
+            
             
 def diario_bordo():
     limpa_tela()
@@ -233,6 +238,7 @@ def diario_bordo():
         escolha = input('1.Sim\n2.Não\nEscolha: ')
         while not eh_int(escolha) or int(escolha) > 2:
             print('Opção inválida! digite novamente')
+            print(f'. Checou {item} ?')
             escolha =  input('1.Sim\n2.Não\nEscolha: ')
         else:
             escolha = int(escolha)
@@ -241,6 +247,8 @@ def diario_bordo():
                     return '✓'
                 case 2:
                     return 'X'
+                case 3:
+                    main()
     def escolhe_diario_menu():    
         escolha = input('\n1.Refazer Checklist\n2.Menu Principal\nEscolha: ')
         while not eh_int(escolha) or int(escolha) > 2:
