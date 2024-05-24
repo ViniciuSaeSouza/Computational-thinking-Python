@@ -85,7 +85,6 @@ def exibe_subtitulo(titulo: str):
     titulo = titulo.upper()
     linha = '*' * (len(titulo) + 6)
     print(linha)
-    # print(titulo.ljust(22)) # --------------------------- PQ NÃO DA O JUSTIFY????????????????
     print(titulo.center(len(linha)))
     print(linha)
     
@@ -123,12 +122,7 @@ def consultar_veiculos():
         
 
     escolhe_painel_consulta()
-    
-    # match int(input('1. Voltar ao menu principal\n2. Finalizar programa\nMenu: ')):
-    #     case 1:
-    #         main()
-    #     case 2:
-    #         finaliza_programa()
+
     
 def cadastrar_veiculo():
     limpa_tela()
@@ -263,9 +257,9 @@ def escolhe_opcao(nrItens):
         case 1:
             cadastrar_veiculo()
         case 2:
-            painel_problemas() # A FAZER
+            painel_problemas() 
         case 3:
-            diario_bordo() # A FAZER
+            diario_bordo() 
         case 4:
             consultar_veiculos()
         case 5:
