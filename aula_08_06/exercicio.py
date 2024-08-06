@@ -1,11 +1,11 @@
 import os
 
 meu_dict = {
-    'nome': '',
-    'idade' : 0,
-    'altura' : 0,
-    'curso' : '',
-    'cor_favorita' : ''
+    'nome': str,
+    'idade' : int,
+    'altura' : float,
+    'curso' : str,
+    'cor_favorita' : str
 }
 
 def preenche_dicionario(dicionario: dict) -> None:
@@ -19,7 +19,7 @@ def exibe_dict_manualmente(dicionario: dict) -> None:
     print(f"Nome...: {dicionario['nome']}")
     print(f"Idade...: {dicionario['idade']}")
     print(f"Altura...: {dicionario['altura']}")
-    # print(f"Curso...: {dicionario['curso']}")
+    print(f"Curso...: {dicionario['curso']}")
     print(f"Cor favorita...: {dicionario['cor_favorita']}")
 
 def exibe_dict_por_metodo(dicionario: dict) -> None:
