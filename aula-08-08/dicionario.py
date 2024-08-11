@@ -45,6 +45,7 @@ notas = {
     "saes" : 10.0,
     "larissa" : 9.0
 }
+
 # Função responsável por adicionar um novo aluno e sua respectiva nota ao dicionario notas.
 def adicionar_novo_aluno_e_nota() -> None:
     os.system('cls')
@@ -77,7 +78,6 @@ def adicionar_novo_aluno_e_nota() -> None:
                     else:
                         print("Nota inválida.")      
                         
-    
     # nota = input("Nota (M - voltar ao menu): ")
     
     # if not nota.isnumeric():
