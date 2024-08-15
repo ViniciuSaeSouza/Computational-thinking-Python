@@ -13,31 +13,31 @@ tabela_pessoas = list()
 
 #  Cria um dicionário de pessoa física
 dict_pessoa_fisica = {
-    'cpf' : '444.222.888.45',
-    'nome' : 'Saes',
-    'idade' : 28,
-    'altura' : 1.81,
-    'sexo' : 'Masculino'
+    'cpf' : str,
+    'nome' : str,
+    'idade' : int,
+    'altura' : float,
+    'sexo' : str
 }
 
 
 def cadastrar_pessoa():
-    for k, v in dict_pessoa_fisica:
+    for k in dict_pessoa_fisica:
         dict_pessoa_fisica[k] = input(f"{k.capitalize()}: ")
         # converte_value(dict_pessoa_fisica(dict_pessoa_fisica[k]))
     tabela_pessoas.append(dict_pessoa_fisica)
     
 
-def verifica_cadastro_existente(nome: str) -> bool:
-    if nome in dict_pessoa_fisica:
-        return True
-    else:
-        return False
 
 def lista_nomes_cadastrados() -> None:
     print(" --NOMES CADASTRADOS-- ")
     print(dict_pessoa_fisica.get('nome'))
         
+def verifica_cadastro_existente(nome: str) -> bool:
+    if nome in dict_pessoa_fisica:
+        return True
+    else:
+        return False
 
 def consultar():
     lista_nomes_cadastrados()
