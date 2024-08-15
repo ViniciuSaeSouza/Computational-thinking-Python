@@ -21,13 +21,15 @@ dict_pessoa_fisica = {
     'sexo' : str
 }
 
+def voltar_menu():
+    input("\nDigite qualquer tecla para voltar ao menu: ")
+    menu()
 
 def cadastrar_pessoa():
     cpf = input("Digite o cpf: ")
     if verifica_cpf_cadastrado(cpf):
         print("CPF já cadastrado no sistema!")
-        input("Digite qualquer tecla para voltar ao menu: ")
-        menu()
+        voltar_menu()
     else:
         dict_pessoa_fisica['cpf'] = cpf
         dict_pessoa_fisica['nome'] = input("Nome: ")
@@ -37,8 +39,7 @@ def cadastrar_pessoa():
         
     tabela_pessoas.append(dict_pessoa_fisica.copy())
     print("Cadastro realizado com sucesso!")
-    input("Digite qualquer tecla para voltar ao menu: ")
-    menu()
+    voltar_menu()
     
 
 
@@ -58,6 +59,7 @@ def consultar():
     lista_cpfs_cadastrados()
     cpf_consulta = input("Digite o cpf que quer consultar: ")
     if verifica_cpf_cadastrado(cpf_consulta):
+        os.system('cls')
         for pessoa in tabela_pessoas:
             if cpf_consulta == pessoa['cpf']:
                 print(f"""
@@ -68,12 +70,10 @@ Idade: {pessoa['idade']}
 Altura: {pessoa['altura']} 
 Sexo: {pessoa['sexo']}
     """)
-                input("Digite qualquer tecla para voltar ao menu: ")
-                menu()
+                voltar_menu()
+    
     else:
-        print("ERRO! CPF não cadastrado.")
-        input("Digite qualquer tecla para voltar ao menu: ")
-        menu()
+        voltar_menu()
                 
 def alterar_cadastro():
     lista_cpfs_cadastrados()
@@ -86,12 +86,10 @@ def alterar_cadastro():
                 tabela_pessoas[i]['idade'] = input("Idade: ")
                 tabela_pessoas[i]['altura'] = input("Altura: ")
                 tabela_pessoas[i]['sexo'] = input("Sexo: ")
-                input("Digite qualquer tecla para voltar ao menu: ")
-                menu()
+                voltar_menu()
     else:
         print("ERRO! cpf digitado incorreto.")
-        input("Digite qualquer tecla para voltar ao menu: ")
-        menu()
+        voltar_menu()
     
 def excluir_cadastro():
     lista_cpfs_cadastrados()
@@ -103,8 +101,12 @@ def excluir_cadastro():
                 print("Usuário deletado com sucesso!")
                 del tabela_pessoas[i]
                 lista_cpfs_cadastrados()
+                voltar_menu()
+    else:
+        print("ERRO! CPF não cadastrado.")
+        voltar_menu()
                 
-    
+
 
 #  Exibe menu principal
 def menu():
