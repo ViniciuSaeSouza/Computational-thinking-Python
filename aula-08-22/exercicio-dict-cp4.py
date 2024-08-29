@@ -3,6 +3,7 @@
 
 import os
 # Dicionário com 5 perguntas, cada pergunta possui: enunciado, alternativas , resposta_certa. É devolvido um contador(int) que armazena o número de acertos.
+
 prova = {
     'Pergunta 1' : {
         'enunciado' : 'Qual a capital da frança?', 
@@ -51,6 +52,9 @@ prova = {
     }
 }
 
+print(prova.values())
+
+
 # Exibe título (passado como parâmetro) com borda superior e inferior de * com o tamanho respectivo ao tamanho do título.
 def exibe_titulo(texto:str):
     tamanho = len(texto)
@@ -95,4 +99,6 @@ def main():
     acertos = exibe_e_responde_prova(prova)
     calcula_taxa_acerto(acertos)
 
-main()
+# main()
+
+

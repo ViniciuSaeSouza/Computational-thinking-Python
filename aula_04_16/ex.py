@@ -31,3 +31,11 @@ Relatório:
     - quantos foram aprovados
     - quantos foram reprovados
     - quantos tiraram a media final maxima (nota 10)"""
+    
+    
+    
+lista = ["saes", "henrique", 'larica', "anderson"]
+
+# for i in range(0, len(lista), 1):
+#   print(lista[i])
+

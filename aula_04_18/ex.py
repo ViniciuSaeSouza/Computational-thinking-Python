@@ -12,11 +12,14 @@ for i in range(0, 5, 1):
     print(f"Elemento[{i}]= {v[i]:6.2f}" )
 print(v)
 
+
+
+
 print(v[0])
 
 for i in range (0, 5, 1):
-    if v[i] < 0:
-        print(v[i], end=" ")
+  if v[i] < 0:
+    print(v[i], end=" ")
 
 # 3 / 4 -
 soma = 0
@@ -30,5 +33,5 @@ for i in range(0, 5, 1):
 
 # 5- 
 for i in range(0,5,1):
-    if v[i] % 2 != 0:
-        print(f"V[{i}]= {v[i]}")
+  if v[i] % 2 != 0:
+    print(f"V[{i}]= {v[i]}")
