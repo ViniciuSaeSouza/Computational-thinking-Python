@@ -9,12 +9,19 @@ Crie o seguinte menu:
 """
 
 def gravar_arquivo():
-  nome_arquivo = input("Digite o nome do arquivo txt: ")
-  info = input("Digite o que vai ser gravado no arquivo: ")
-  arquivo = open(nome_arquivo, 'w', encoding='utf-8')
+  while True:
+    nome_arquivo = (input("Digite o nome do arquivo txt: "))
+    if nome_arquivo.strip() != "":
+      nome_arquivo += ".txt"
+      info = input("Digite o que vai ser gravado no arquivo: ")
+      break
+    else:
+      print("ERRO! Nome do arquivo não pode ser vazio.")
   try:
-    arquivo.write(info)
-    arquivo.close()
+    with open(nome_arquivo, 'w', encoding='utf-8') as arquivo:
+      arquivo.write(info)
+      print("Arquivo gravado com sucesso!")
+      arquivo.close()
   except FileNotFoundError:
     print("ERRO! Arquivo não encontrado")  
   menu()
