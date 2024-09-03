@@ -1,0 +1,3 @@
+Utilizando o operador de contexto 'with'
+Utilizando o operador de contexto 'with'
+Utilizando o operador de contexto 'with'
