@@ -49,10 +49,9 @@ lista_arquivo_sujo = []
 def tratamento_strings(lista:list[str]) -> list[str]:
   aux = []
   for s in lista:
-    s = s.replace("pão", "pica")
-    print(s)
+    #s = s.removesuffix("\n")
+    s = s.replace("\n","")
     aux.append(s)
-  
   return aux
 
 with open("arquivo_sujo.txt", "w+", encoding="utf-8") as arquivo_sujo:
