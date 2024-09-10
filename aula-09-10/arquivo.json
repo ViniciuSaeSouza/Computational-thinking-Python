@@ -1,0 +1,17 @@
+{
+  "pessoa1": {
+    "nome": "Edson",
+    "idade": 50,
+    "email": "eds@fiap.com.br"
+  },
+  "pessoa2": {
+    "nome": "Maria",
+    "idade": 18,
+    "email": "maried@fiap.com.br"
+  },
+  "pessoa3": {
+    "nome": "Laura",
+    "idade": 18,
+    "email": "laurinha@fiap.com.br"
+  }
+}
