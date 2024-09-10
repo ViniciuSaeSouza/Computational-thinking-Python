@@ -78,36 +78,51 @@ def tratamento_string(lista:list) -> str:
 # input = "Olá, mundo! Eu amo Python."
 # output = ["olá", "mundo", "eu", "amo", "python"]
 def cria_lista_de_string(string:str) -> list[str]:
-  lista = []
-  aux = ""
-  for char in string:
-    char = char.lower()
-    if char != " ":
-      aux += char
-    else:
-      lista.append(aux)
-      aux = ""
-  return lista
+  string = string.lower()
+  return string.split()
+
 
 # Função que recebe uma lista de palavras e retorna um dicionário com as palavras como chaves e valor 0;
 # EX:  
 # input = ["olá", "mundo", "eu", "amo", "python"]
 # output = {"olá": 0, "mundo": 0, "eu": 0, "amo": 0, "python": 0}
 def cria_dict_ocorrencia(lista:list) -> dict:
-  aux = {}
+  dict_aux = {}
   for palavra in lista:
-    aux[palavra] = 0
-  return aux
+    dict_aux[palavra] = 0
+  return dict_aux
 
 # Função que recebe uma lista de palavras e um dicionário, e retorna o dicionário com a contagem de ocorrências de cada palavra;
 # EX:  
 # input = ["olá", "mundo", "eu", "amo", "python", "olá", "mundo"]
 # output = {"olá": 2, "mundo": 2, "eu": 1, "amo": 1, "python": 1}
-def conta_ocorrencias (lista:list[str], dicionario:dict) -> dict:
+def conta_ocorrencias (lista:list[str], dicionario:dict) -> tuple[dict, list[str]]:
+# def conta_ocorrencias (lista:list[str], dicionario:dict) -> tuple[dict, list[str]]:
   for palavra in lista:
     if palavra in dicionario:
       dicionario[palavra] += 1
-  return dicionario
+  def conta_maior_ocorrencia(dic: dict) -> list[str]:
+    maior_valor = 0
+    lista_aux = []
+    
+    for v in dic.values():
+      if v > maior_valor:
+        maior_valor = v
+    
+    for k, v in dic.items():
+      if v == maior_valor:
+        lista_aux.append(k)
+    
+    if len(lista_aux) > 1:
+      print("As palavras de maior ocorrência são: ")
+    else:
+      print("A palavra de maior ocorrência é: ")
+    for i in range(0, len(lista_aux)):
+      print(f"- {lista_aux[i]}")
+    print(f"aparecendo {maior_valor} vezes.")   
+    return lista_aux 
+  palavras_maior_ocorrencia = conta_maior_ocorrencia(dicionario)
+  return dicionario, palavras_maior_ocorrencia
   
 # Lê os comentários do usuário e grava em um arquivo chamado "arquivo_sujo.txt"
 with open("arquivo_sujo.txt", "w+", encoding="utf-8") as arquivo_sujo:
@@ -133,7 +148,8 @@ set_palavras_unicas = set(lista_palavras_filtradas)
 # Cria um dicionário que define cada palavra do 'set_palavras_unicas' como chave e define um valo de '0'
 dict_de_palavras_unicas = cria_dict_ocorrencia(set_palavras_unicas)
 # Adiciona +1 ao valor de cada chave do 'dict_de_palavras_unicas' para contar quantas vezes cada palavra aparece
-palavras_unicas_contadas = conta_ocorrencias(lista_palavras_filtradas , dict_de_palavras_unicas)
+palavras_unicas_contadas, palavras_maior_ocorrencia = conta_ocorrencias(lista_palavras_filtradas , dict_de_palavras_unicas)
+
 
 # Cria e escreve em um arquivo chamado 'arquivo_limpo.txt' todas as palavras (sem pontuação ou stopwords) mesmo que repetidas dentro de 'lista_palavras_filtradas'
 with open("arquivo_limpo.txt", 'w+', encoding='utf-8') as arquivo_limpo:    
