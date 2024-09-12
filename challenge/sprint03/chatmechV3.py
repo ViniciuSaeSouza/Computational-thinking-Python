@@ -487,5 +487,6 @@ def menu_inicial():
     else:
       print("ERRO! Digite uma opção válida")
       
-# menu_inicial()
-menu_principal()
+menu_inicial()
+# menu_principal()
+   
