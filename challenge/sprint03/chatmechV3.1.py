@@ -1,5 +1,14 @@
 import os
 os.system("cls")
+"""
+Feedback: 
+Permitiu cadastrar login e senha em branco. ✔️
+Permitiu cadastro do veiculo em branco. ✔️
+Ao digitar o horário do agendamento apareceu o erro: line 194, in acessar_usuário(). ✔️
+A usabilidade e consistência dos dados devem ser melhoradas no geral. 
+"""
+
+
 
 #---------------------------------- Funções
 class ExitProgram(Exception):
@@ -11,25 +20,19 @@ def voltar_menu_inicial(entrada:str):
   
 def voltar_menu_principal(entrada:str):
   if entrada.lower() == 'sair':
-    os.system('cls')
     menu_principal()
     
-def voltar_menu_veiculo(entrada:str):
+def voltar_menu_veiculo(entrada):
   if entrada.lower() == 'sair':
     os.system('cls')
     menu_veiculo()
 
-def voltar_menu_agendamento(entrada:str):
-  if entrada.lower() == 'sair':
-    os.system('cls')
-    menu_servico()
-
 def presione_qualquer_tecla_inicial():
-  input("Pressione qualquer tecla para voltar ao menu inicial: ")
+  input("Digite qualquer tecla para voltar ao menu inicial: ")
   menu_inicial()
   
 def presione_qualquer_tecla_principal():
-  input("Pressione qualquer tecla para voltar ao menu principal: ")
+  input("Digite qualquer tecla para voltar ao menu principal: ")
   menu_principal()
   
 def menu_principal():
@@ -70,13 +73,15 @@ def menu_principal():
           case _:
             print("\nOpção inválida! digite novamente.")
 
+
 servicos = {
-  } # Um dicionário que armazena os dados de serviços agendados
+  'servico1': {'dia': 8, 'mes': 9, 'hora': '14:30'}
+}
+
 
 def mostra_servicos_agendados():
   if not servicos:
-    os.system('cls')
-    print("Não há nenhum serviço cadastrado!\n")
+    print("Não há nenhum serviço cadastrado!")
   else:
     os.system('cls')
     print(" -- SERVIÇOS AGENDADOS -- \n")
@@ -90,47 +95,11 @@ def mostra_servicos_agendados():
       if mes < 10:
         mes = "0" + str(mes)
         
-      print(f"- Serviço {i}: {dia}/{mes} ás {dados['hora']}hrs\n")
+      print(f"\n- Serviço {i}: {dia}/{mes} ás {dados['hora']}hrs")
       i += 1
-  
-  
-  
-def atualiza_chaves_agendamento(dicionario:dict) -> None:
-  servicos_copy = {}
-  for i, (servico, dados) in enumerate(dicionario.items()):
-    servicos_copy[f"servico{i+1}"] = dados
-  servicos.clear()
-  servicos.update(servicos_copy)
+  input("\nPressione qualquer tecla para voltar: ")
+  menu_servico()
 
-def cancelar_agendamento():
-  os.system('cls')
-  selecao_valida = False
-  while True:
-    mostra_servicos_agendados()
-    while True:
-      selecao = verifica_input_vazio("Digite o número do agendamento a ser cancelado: ", 'a')
-      if not selecao.isdigit():
-        mostra_servicos_agendados()
-        print("Número de agendamento inexistente!")
-        continue
-      else:
-        chave = 'servico' + selecao
-        confirmacao = input(f"Tem certeza que deseja excluir {chave}? (s/n): ").lower()
-        break
-    match confirmacao:
-      case 's':
-        atualiza_chaves_agendamento(servicos)
-        # Cancelar o agendamento
-        del servicos[chave]
-        print("\nAgendamento cancelado com sucesso!\n")
-        input("Pressione qualquer tecla para voltar ao menu de servicos: ")
-        os.system('cls')
-        menu_servico()
-      case 'n':
-        os.system('cls')
-        menu_servico()
-        break
-  
 
 def menu_servico():
     os.system('cls')
@@ -139,8 +108,7 @@ def menu_servico():
       opcao = input("""
 1 - Agendar serviço
 2 - Serviços agendados
-3 - Cancelar agendamento
-4 - Menu principal
+3 - Menu principal
 
 Escolha: """)
       match opcao:
@@ -149,12 +117,8 @@ Escolha: """)
           agendar_servico()
         case "2":
           mostra_servicos_agendados()
-          input("Pressione qualquer tecla para voltar: ")
-          menu_servico()
           break
         case "3":
-          cancelar_agendamento()
-        case "4":
           menu_principal()
           break
         case _:
@@ -166,9 +130,8 @@ def agendar_servico():
         try:
             # Verifica o dia
             while True:
-                dia = verifica_input_vazio("\nQual dia gostaria de agendar seu serviço?\nEscolha: ", 'a')
                 try:
-                    dia = int(dia)
+                    dia = int(input("Qual dia gostaria de agendar seu serviço?\nEscolha: "))
                     if not (1 <= dia <= 31):
                         raise ValueError("dia")
                     break  # Sai do loop quando o dia for válido
@@ -177,9 +140,8 @@ def agendar_servico():
 
             # Verifica o mês
             while True:
-                mes = verifica_input_vazio("\nQual o mês?\nEscolha: ", 'a')
                 try:
-                    mes = int(mes)
+                    mes = int(input("\nQual o mês?\nEscolha: "))
                     if not (1 <= mes <= 12):
                         raise ValueError("mes")
                     break  # Sai do loop quando o mês for válido
@@ -188,8 +150,8 @@ def agendar_servico():
 
             # Verifica o horário
             while True:
-                hora = verifica_input_vazio("\nQual o horário do agendamento? (Formato hh:mm)\nEscolha: ", 'a')
                 try:
+                    hora = input("\nQual o horário do agendamento? (Formato hh:mm)\nEscolha: ")
                     hora_parts = hora.split(':')
                     if len(hora_parts) != 2 or not all(part.isdigit() for part in hora_parts):
                         raise ValueError("hora_formato")
@@ -214,15 +176,11 @@ def agendar_servico():
     servicos[f"servico{len(servicos)+1}"] = {'dia':dia,'mes':mes,'hora':hora}
     
     # Aqui segue o fluxo normal após o agendamento correto
-    os.system('cls')
     print(f"Serviço agendado para {dia}/{mes} às {hora}.")
-    input("\nPressione qualquer tecla para retornar ao menu anterior...")
-    menu_servico()
         
 def acessar_usuario():
     try:
         while True:
-            print("-- MENU ACESSO --")
             print("\n1 - Registrar usuário\n"
                 "2 - Fazer login\n"
                 "3 - Encerrar programa\n")
@@ -260,8 +218,6 @@ def verifica_input_vazio(pergunta:str, tipo:str) -> str:
           voltar_menu_inicial(entrada)
         elif tipo == 'p':
           voltar_menu_principal(entrada)
-        elif tipo == 'a':
-          voltar_menu_agendamento(entrada)
         elif tipo == 'v':
           voltar_menu_veiculo(entrada)
         if entrada == "":
@@ -274,11 +230,10 @@ def verifica_input_vazio(pergunta:str, tipo:str) -> str:
 usuarios = {  # Um dicionário que armazena os dados de login e senha
   'usuario1': 
     {
-      'login':'admin', 
-      'senha':'admin'
+      'login':'saes', 
+      'senha':'saes'
     }
 }
-
 def verifica_se_existe(dado:str,chave:str,dicionario:dict) -> bool:
   for k, v in dicionario.items():
     if dado == v[chave]:
@@ -325,8 +280,10 @@ def verificar_login():
     print("\nLogin ou senha incorretos.\n")
     return True
 
-veiculos = {} # Um dicionário que armazena os dados do veiculo
-   
+
+veiculos = {'veiculo1': {'placa': 'DPX1018', 'modelo': 'fuxca', 'dono': 'dodock'},
+            'veiculo2': {'placa': 'XXT2020', 'modelo': 'polo', 'dono': 'saes'}} # Um dicionário que armazena os dados do veiculo
+# veiculos = {}      
 def verifica_placa_valida() -> str:
     while True:
         placa = verifica_input_vazio("Digite a placa do veículo: ", 'v').upper()
@@ -338,7 +295,7 @@ def verifica_placa_valida() -> str:
 def mostrar_veiculos():
   if veiculos:
     i = 1
-    print("-- VEICULOS CADASTRADOS --\n")
+    print("\nVeículos cadastrados:\n")
     for veiculo, dados in veiculos.items():
       print(f"Veiculo {i}- ")
       print(f"Placa: {dados['placa']}\nModelo: {dados['modelo']}\nDono: {dados['dono']}\n")
@@ -350,7 +307,6 @@ def mostrar_veiculos():
     menu_veiculo()
         
 def cadastrar_veiculo():
-    print("-- CADASTRO DE VEICULO --\n")
     placa = verifica_placa_valida()
     while verifica_se_existe(placa, 'placa', veiculos):
       print("ESTE DADO JÁ EXISTE!")
@@ -363,6 +319,8 @@ def cadastrar_veiculo():
 
     veiculos[f'veiculo{len(veiculos)+1}'] = veiculo
     print("\nVeículo cadastrado com sucesso!\n")
+
+  
 
 def excluir_veiculo():
   os.system('cls')
@@ -384,7 +342,7 @@ def excluir_veiculo():
         atualiza_chaves_dicionario(veiculos)
         # Excluir o veículo
         del veiculos[chave]
-        print("\nVeículo excluído com sucesso!\n")
+        print("Veículo excluído com sucesso!")
         input("Pressione qualquer tecla para voltar ao menu de veículo: ")
         os.system('cls')
         menu_veiculo()
@@ -424,28 +382,28 @@ def editar_veiculo():
     dono = veiculo_selecionado['dono']
     dado_alterar = ""
       
-    print(f"""-- DADOS VEICULOS --\n
+    print(f"""Dados veículo -
 Placa: {placa}
 Modelo: {modelo}
 Dono: {dono}
 """)
-    dado_alterar = verifica_input_vazio("\nQual dado deseja alterar (placa, modelo, dono): ", 'v').lower()
+    dado_alterar = verifica_input_vazio("Qual dado deseja alterar (placa, modelo, dono): ", 'v').lower()
     voltar_menu_principal(dado_alterar)
     match dado_alterar:
       case "placa":
-        print(f"Placa atual: {placa}\n")
+        print(f"Placa atual: {placa}")
         nova_placa = verifica_placa_valida()
         veiculo_selecionado['placa'] = nova_placa
         veiculos[chave] = veiculo_selecionado
         placa = nova_placa
       case "modelo":
-        print(f"Modelo atual: {modelo}\n")
+        print(f"Modelo atual: {modelo}")
         novo_modelo = verifica_input_vazio("Novo modelo: ", 'v').lower()
         veiculo_selecionado['modelo'] = novo_modelo
         veiculos[chave] = veiculo_selecionado
         modelo = novo_modelo
       case "dono":
-        print(f"Dono atual: {dono}\n")
+        print(f"Dono atual: {dono}")
         novo_dono = verifica_input_vazio("Novo dono: ", 'v').lower()
         veiculo_selecionado['dono'] = novo_dono
         dono = novo_dono
@@ -455,15 +413,14 @@ Dono: {dono}
       alterar_mais = input("Deseja alterar mais algum item?\nEscolha (S/N): ").lower()
       match alterar_mais:
         case "s":
-          os.system('cls')
           break
-          
         case "n":
           os.system('cls')
           menu_veiculo()
           break
         case _:
           print("Opção inválida!")
+
 
 def menu_veiculo(): #CRUD
   while True:
@@ -500,8 +457,7 @@ def menu_veiculo(): #CRUD
         break
       case _:
         print("Opção inválida. Tente novamente.")
-        
-#---------------------------------- Programa principal ----------------------------------
+#---------------------------------- Programa principal
 
 
 def menu_inicial():
@@ -519,12 +475,11 @@ def menu_inicial():
           exit()
           break
         case "1":
-          os.system('cls')
           acessar_usuario()
           break
         case "2":
           os.system('cls')
-          print("Bem vindo ao ChatMech, nosso mecânico virtual, qual o seu problema?\n")
+          print("Bem vindo ao ChatMech, nosso mecânico virtual, qual o seu problema?")
           presione_qualquer_tecla_inicial()
           break
         case _:
@@ -532,5 +487,6 @@ def menu_inicial():
     else:
       print("ERRO! Digite uma opção válida")
       
-#menu_inicial()
-menu_principal()
+menu_inicial()
+# menu_principal()
+   
