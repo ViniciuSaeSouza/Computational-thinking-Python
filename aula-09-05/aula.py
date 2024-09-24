@@ -11,7 +11,6 @@
 documento = []
 
 with open("arq.txt", "w+", encoding="utf-8") as arq:
-    
   # Exibindo a gravação das linhas do arquivo
   print("\nExibindo a gravação linha linha...")
   arq.write("Linha1\n")    
