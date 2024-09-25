@@ -1,0 +1,12 @@
+{
+    "funcionario1": {
+        "id": "1002",
+        "nome": " João",
+        "cargo": "TI"
+    },
+    "funcionario2": {
+        "id": "1004",
+        "nome": " Pedro",
+        "cargo": "TI"
+    }
+}

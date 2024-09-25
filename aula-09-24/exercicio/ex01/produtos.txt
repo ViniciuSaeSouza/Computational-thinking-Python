@@ -1,0 +1,4 @@
+001, Laptop, 3500.00
+002, Smartphone, 1500.00
+003, Monitor, 600.00
+004, Teclado, 150.00

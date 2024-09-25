@@ -1,0 +1,18 @@
+{
+    "pessoa1": {
+        "login": "12345t",
+        "email": "edson@fiap.com.br"
+    },
+    "pessoa2": {
+        "login": "01020d",
+        "email": "maria@hotmail.com"
+    },
+    "pessoa3": {
+        "login": "1abcde",
+        "email": "estela@ig.com.br"
+    },
+    "pessoa4": {
+        "login": "123abd",
+        "email": "vania@terra.com.br"
+    }
+}
