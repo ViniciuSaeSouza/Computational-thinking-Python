@@ -7,16 +7,6 @@ caminho_arquivo_login = "login.txt"
 caminho_arquivo_email = "email.txt"
 caminho_arquivo_json = "login_senha.json"
 
-# Teste para ver como seria para criar os arquivos na pasta atual do arquivo .py
-"""
-import os
-caminho_atual = os.path.dirname(__file__)
-caminho_arquivo_dados = os.path.join(caminho_atual, "dados.txt")
-caminho_arquivo_login = os.path.join(caminho_atual, "login.txt")
-caminho_arquivo_email = os.path.join(caminho_atual, "email.txt")
-caminho_arquivo_json = os.path.join(caminho_atual, "login_senha.json")
-"""
-
 # Criação do arquivo de dados com informações de login e email
 with open(caminho_arquivo_dados, "w", encoding="utf-8") as arquivo:
   arquivo.write("""12345t, edson@fiap.com.br
@@ -57,11 +47,11 @@ def cria_arquivo_email(dados_lidos: list[str]) -> list[str]:
 
 # Cria arquivo JSON a partir de listas de logins e emails
 def cria_arquivo_json(lista_logins: list[str], lista_emails: list[str]):
-  dict_aux = {}
+  lista_aux = []
   with open(caminho_arquivo_json, "w", encoding="utf-8") as arquivo:
     for i in range(0, len(lista_logins), 1):
-      dict_aux[lista_logins[i]] = {'email': lista_emails[i]}
-    json.dump(dict_aux, arquivo, indent=2)
+      lista_aux.append({'login' : lista_logins[i], 'email' : lista_emails[i]}) 
+    json.dump(lista_aux, arquivo, indent=2)
 
 # Mostra logins armazenados no arquivo de login
 def mostra_logins(lista_logins: list[str]) -> None:
