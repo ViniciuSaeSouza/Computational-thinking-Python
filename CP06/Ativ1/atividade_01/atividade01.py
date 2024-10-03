@@ -1,5 +1,7 @@
 # ax² + bx + c
 # a = 1 / b = -5 / c = 6
+
+# RM 554456 - VINÍCIUS SAES DE SOUZA
 import os
 import math
 from typing import Tuple
