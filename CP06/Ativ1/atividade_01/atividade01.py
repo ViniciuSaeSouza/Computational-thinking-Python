@@ -24,7 +24,6 @@ def bhaskara(a: float, b: float, delta: float) -> tuple[float, float]:
     return x1, x2
 
 def converte_float(item:str) -> float:
-
     try:
         numero = float(item)
         return numero
@@ -45,23 +44,23 @@ def verifica_negativo(item:float) -> bool:
     else:
         return False
 
-def verifica_continuar(inpt: str) -> bool:
+def verifica_continuar(inpt: str) -> str:
     opcoes = ["S", "N"]
     if inpt.upper() in opcoes:
-        return True
+        return inpt.upper()
     else:
-        return False
+        return "F"
 
 
 def continuar_sistema():
-    continuar = input("Continuar executando o programa? [S]im ou [N]ão: ")
-    if not verifica_continuar(continuar):
-        if continuar.upper() == "S":
+    continuar = verifica_continuar(input("Continuar executando o programa? [S]im ou [N]ão: "))
+    match continuar:
+        case "S":
             menu()
-        if continuar.upper() == "N":
+        case "N":
             print("Finalizando....")
             exit()
-        else:
+        case _:
             print("Digite uma opção válida!")
             continuar_sistema()
 
@@ -82,29 +81,32 @@ def menu():
 
 
         delta = calcula_delta(a, b, c)
-        x1, x2 = bhaskara(a, b, delta)
-
+        
         if verifica_negativo(delta):
             print(f"Delta 🔺: {delta}")
             print("Não é possível calcular x1 e x2 porque o delta é negativo")
-
-
-        elif verifica_igual_zero(delta):
+            break
+        else:
+            x1, x2 = bhaskara(a, b, delta)
+        
+        if verifica_igual_zero(delta):
             print(f"Delta 🔺: {delta}")
             print(f"X1: {x1} \nX2: {x2}")
             print("As raízes x1 e x2 tem o mesmo valor")
+            break
 
         elif verifica_equacao_incompleta(b, c):
             print(f"Delta 🔺: {delta}")
             print(f"X1: {x1} \nX2: {x2}")
             print("Equação do segundo grau INCOMPLETA")
-
+            break
         else:
             print(f"Delta 🔺: {delta}")
             print(f"X1: {x1} \nX2: {x2}")
             print("Equação do segundo grau COMPLETA\n As raízes x1 e x2 tem valores distintos")
+            break
 
-        continuar_sistema()
+    continuar_sistema()
 
 
 menu()
