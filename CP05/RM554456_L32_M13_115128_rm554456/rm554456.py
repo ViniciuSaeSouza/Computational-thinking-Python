@@ -13,9 +13,12 @@ def valida_credencial(dado: str, tipo: str) -> bool:
             return False
         elif not dado[0].isnumeric():
             return False
+        flag = False
         for char in dado[1:]:
             if char in letras:
-                return True
+                flag = True
+        if flag == False:
+            return False
         else:
             return True
 
@@ -24,9 +27,14 @@ def valida_credencial(dado: str, tipo: str) -> bool:
             return False
         elif dado[0] not in letras:
             return False
+        
+        flag = False
         for char in dado[1:]:
             if char.isnumeric():
-                return True
+                flag = True
+        
+        if flag == False:
+            return False
         else:
             return True
 
