@@ -59,7 +59,7 @@ def musica_encontrada(data: dict) -> bool:
 # Exibe a letra da música
 # Parâmetro 1: data -> dict: dicionário com as informações da resposta da API
 # Retorno: None
-def exibir_letra(data: dict) -> None:
+def exibir_letra(data: dict) -> bool:
     if musica_encontrada(data): 
         for musica in data['mus']:
             letra = musica['text']
@@ -67,10 +67,35 @@ def exibir_letra(data: dict) -> None:
     else: 
         print("Letra não encontrada.")
 
+# Verifica se nos dados passados pelo json existe uma tradução para a música
+# Parâmetro 1: data -> dict: dicionário com as informações da resposta da API
+# Retorno: bool
+def verifica_traducao(data: dict) -> bool:
+    if 'translate' in data['mus'][0]:
+           return True
+    return False
+
+# Exibe a tradução da música
+# Parâmetro 1: data -> dict: dicionário com as informações da resposta da API
+# Retorno: None
+def exibir_traducao(data: dict) -> None:
+        traducao = data['mus'][0]['translate'][0]['text']
+        print(f"\nTradução para português:\n\n== {data["mus"][0]["name"]} ==\n\n{traducao}")
+
 # Apaga a tela, verificando o sistema operacional
 # Retorno: None
 def apaga_tela() -> None:
     os.system("cls" if os.name == "nt" else "clear")
+
+# Exibe uma mensagem formatada.
+# Parâmetro 1: carac -> str: O caractere que formará a mensagem
+# Parâmetro 2: msg -> str: A mensagem que será exibida
+# Retorno: None
+def mensagem(carac:str, msg: str) -> None:
+    tamanho = len(msg)
+    print(f"\n{carac * tamanho}")
+    print(msg)
+    print(f"{carac * tamanho}")
 
 # --------------- PROGRAMA PRINCIPAL
 
@@ -88,16 +113,32 @@ while exibir:
     data = buscar_letra(artista, nome_musica, key)
     
     apaga_tela()
+
     if musica_encontrada(data):
         exibir_letra(data)
-        # exibir_traducao(data)
-        
+
+        if verifica_traducao(data):
+            while True:
+                mensagem("=", "Tradução disponível, deseja ver? [S]im ou [N]ão:")
+                opcao = input("").upper()
+                if opcao == "S":
+                    apaga_tela()
+                    exibir_traducao(data)
+                    break
+                elif opcao == "N":
+                    exibir = False
+                    break
+                else:
+                    print("\nOpção inválida (S ou N)")
+        else:
+            mensagem("=", "Tradução não disponível.")
+
     else:
         print("Artista ou música inválidos.")
 
     while True:
-            print("------------------------------------------------------------------")
-            opcao = input("\nQuer pesquisar outra música? [S]im ou [N]ão: ")
+            mensagem("=", "Quer pesquisar outra música? [S]im ou [N]ão: ")
+            opcao = input().upper()
             if opcao == "S":
                 apaga_tela()
                 break
@@ -109,7 +150,7 @@ while exibir:
 
 else:
     apaga_tela()
-    print("\nAgradecemos por usar nosso sistema! :)")
+    mensagem("=","Agradecemos por usar nosso sistema! :)")
 
 buscar_letra( "twenty one pilots", "Doubt", key) # no json, aparece a chave "translate", pois há tradução, e no indice 0 tem informações como id da tradução, entre outras, uma delas é a chave "text" que o value é o texto da tradução
 
