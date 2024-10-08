@@ -53,7 +53,6 @@ def musica_encontrada(data: dict) -> bool:
     if tipo == 'exact':
         return True  # Encontrou
     else:
-        print("A música não foi encontrada.")
         return False  # Não encontrou
     
 # Exibe a letra da música
@@ -134,7 +133,7 @@ while exibir:
             mensagem("=", "Tradução não disponível.")
 
     else:
-        print("Artista ou música inválidos.")
+        print("== Música não encontrada! ==")
 
     while True:
             mensagem("=", "Quer pesquisar outra música? [S]im ou [N]ão: ")
@@ -152,6 +151,5 @@ else:
     apaga_tela()
     mensagem("=","Agradecemos por usar nosso sistema! :)")
 
-buscar_letra( "twenty one pilots", "Doubt", key) # no json, aparece a chave "translate", pois há tradução, e no indice 0 tem informações como id da tradução, entre outras, uma delas é a chave "text" que o value é o texto da tradução
-
-buscar_letra( "3030", "Vai lá", key) # no json, não aparece a chave "translate", pois já está em português
+# música internacional -> no json, aparece a chave "translate", pois há tradução, e no indice 0 tem informações como id da tradução, entre outras, uma delas é a chave "text" que o value é o texto da tradução
+# música nacional -> no json, não aparece a chave "translate", pois já está em português
