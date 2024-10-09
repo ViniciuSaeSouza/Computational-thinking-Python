@@ -32,5 +32,21 @@ def get_token() -> str:
 
 token = get_token()
 
-print(token)
+# print(token)
 
+def search_id(query: str, type: str, token: str):
+    query = query.replace(" ","+")
+    url = f"https://api.spotify.com/v1/search?q={query}&type={type}"
+    headers = {
+        "Authorization": f"Bearer {token}"
+    }
+    response = requests.get(url, headers=headers)
+    data:dict = response.json()
+    artista = data.get('artists')
+    id = artista['items'][0]['id']
+    print(id)
+
+
+
+
+search_id("TOKIODK", "artist", token)
