@@ -31,22 +31,28 @@ def get_token() -> str:
     return token
 
 token = get_token()
-
 # print(token)
 
-def search_id(query: str, type: str, token: str):
+
+def search_id(query: str, tipo: str) -> str:
     query = query.replace(" ","+")
-    url = f"https://api.spotify.com/v1/search?q={query}&type={type}"
+    url = f"https://api.spotify.com/v1/search?q={query}&type={tipo}"
     headers = {
         "Authorization": f"Bearer {token}"
     }
     response = requests.get(url, headers=headers)
     data:dict = response.json()
-    artista = data.get('artists')
-    id = artista['items'][0]['id']
-    print(id)
+    
+    match tipo:
+        case "artist":
+            # artista = data.get('artists')
+            # id = artista['artists']['items'][0]['id']
+            id = data['artists']['items'][0]['id']
+        case "album":
+            id = data['albums']['items'][0]['id']
+    return id
 
 
+id = search_id("oproprio", "album")
+print(id)
 
-
-search_id("TOKIODK", "artist", token)
