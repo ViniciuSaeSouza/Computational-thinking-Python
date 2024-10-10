@@ -1,6 +1,6 @@
 import os
 import oracledb
-import pandas as pd
+import pandas as pdiddy
 
 try:
   conn = oracledb.connect(user="RM554456", password="080995", dsn="oracle.fiap.com.br:1521/ORCL")
