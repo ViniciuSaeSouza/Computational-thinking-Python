@@ -10,7 +10,6 @@ import os
 eleitor = {}
 
 # SUB-ALGORITMOS
-
 def clear():
     return os.system('cls' if os.name == 'nt' else 'clear')
 
@@ -90,7 +89,25 @@ def listar_tudo():
         print('Não há nenhum cadastro registrado')
     else:
         print(data_frame)
+        
+def apurar_votos():
+    sql = "SELECT voto, COUNT(*) AS quantidade FROM urna GROUP BY voto ORDER BY quantidade DESC"
+    inst_select.execute(sql)
+    result =  inst_select.fetchall()
+    
+    if not result:
+        print('Resultado da apuração:')
+        print('\nNão há votos registrados')
+    else:
+        print('Resultado da apuração:')
+        print('\nCandidato |  Quantidade de Votos\n')
+        
+        for voto, quantidade in result:
+            print(f'{voto} | {quantidade}')
+            
+        ganhador = result[0]
 
+        print(f'\nO ganhador da votação foi o candidato {ganhador[0]} com o total de {ganhador[1]} votos!')
 
 try: 
     conn = oracledb.connect(user="RM555678", password="310302", dsn="oracle.fiap.com.br:1521/ORCL")
@@ -107,16 +124,22 @@ else:
 
 # Programa
 
+
 clear()
 while conexao:
 
     print("Bem-vindo ao sistema de votação!\n")
-    cpf = input("Digite o Cpf ou 'L' para listar todos registros: ")
+    cpf = input("Digite o Cpf, 'L' para listar todos registros ou 'A' para fazer a apuração dos votos: ")
     
     if cpf.lower() == "l":
         clear()
         print("Registros salvos\n")
         listar_tudo()
+        continuar()
+        continue
+    if  cpf.lower() == "a":
+        clear()
+        apurar_votos()
         continuar()
     else:
         existe, data_frame = verifica_chave(cpf)
