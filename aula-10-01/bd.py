@@ -107,6 +107,7 @@ while conexao:
  
             # Gera um DataFrame com os dados da lista utilizando o Pandas
             dados_df = pd.DataFrame.from_records(lista_dados, columns=['Id', 'Tipo', 'Nome', 'Idade'], index='Id')
+            dados_df.describe()
  
             # Verifica se não há registro através do dataframe
             if dados_df.empty:
