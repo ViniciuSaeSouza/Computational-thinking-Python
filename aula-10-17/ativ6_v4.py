@@ -108,29 +108,34 @@ while conexao:
                     print('Dados')
                 else:
                     print("Não queria exportar mesmo...")
-        case 3: 
+        case 3:
+
             colunas_exibir = []
+
             while True:
                 os.system("cls")
-                print("=== Escolha as Colunas ===")
+                print("=== Escolha as Colunas a Exibir ===")
                 print("""
-                1 - Id
-                2 - Tipo de Pet
-                3 - Nome
-                4 - Idade
-                5 - Data de Nascimento
-                6 - Todas
-                7 - Finalizar
+1 - Id
+2 - Tipo de Pet
+3 - Nome
+4 - Idade
+5 - Data de Nascimento
+6 - Todas
+7 - Finalizar
                 """)
-                opcao = input("Escolha: ")
- 
-                if opcao == '7':
+                
+                escolha_coluna = input("Escolha: ")
+
+                if escolha_coluna == '7':
                     break
-                if opcao == '6':  # Seleciona todas as colunas
-                    colunas_exibir = ['Id', 'Tipo', 'Nome', 'Idade', 'Data de Nascimento']
+                
+                if escolha_coluna == '6': 
+                    colunas_exibir = ['Id', 'Tipo', 'Nome', 'Idade', 'Data Nascimento']
                     print("Todas as colunas adicionadas.")
                     break
-                match opcao:
+                
+                match escolha_coluna:
                     case '1':
                         colunas_exibir.append('Id')
                         print("Coluna 'Id' adicionada.")
@@ -144,17 +149,17 @@ while conexao:
                         colunas_exibir.append('Idade')
                         print("Coluna 'Idade' adicionada.")
                     case '5':
-                        colunas_exibir.append('Data de Nascimento')
+                        colunas_exibir.append('Data Nascimento')
                         print("Coluna 'Data de Nascimento' adicionada.")
                     case _:
-                        print(f"Opção '{opcao}' inválida. Tente novamente.")
+                        print(f"Opção '{escolha_coluna}' inválida.")
                 input("\nPressione enter para adicionar mais colunas... ")
 
-                if colunas_exibir:
-                    dados_filtrados = dados_df[colunas_exibir]
-                    print("\n=== Registros Filtrados ===\n")
-                    print(dados_filtrados)
-                input("\nPressione enter para continuar")
+            if colunas_exibir: # se existem colunas na lista
+                dados_filtrados = dados_df[colunas_exibir]
+                print("\n=== Registros Filtrados ===\n")
+                print(dados_filtrados)
+            input("\nPressione enter para continuar... ")
 
         case 4:
             print("Escolha por qual coluna você quer filtrar:\n")
@@ -169,9 +174,8 @@ while conexao:
                 case 1:
                     exibe_sub_menu_string()
                     opcao = int("\nEscolha: ")
-                    
                     if opcao > 3 or opcao < 1:
-                        print("\nNão existe essa oção no menu!")
+                        print("\nNão existe essa opção no menu!")
                     else:
                         filtra_string(opcao)
                 case 2:
