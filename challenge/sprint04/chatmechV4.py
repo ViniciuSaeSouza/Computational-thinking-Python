@@ -16,7 +16,7 @@ Agendou para o dia 31.02 "Serviço agendado para 31/2 às 22:12"..
 
 #---------------------------------- Funções
 class ExitProgram(Exception):
-    pass
+  pass
 
 def voltar_menu_inicial(entrada:str):
   if entrada.lower() == 'sair':
@@ -324,7 +324,6 @@ def cadastrar_veiculo():
     veiculos[f'veiculo{len(veiculos)+1}'] = veiculo
     print("\nVeículo cadastrado com sucesso!\n")
 
-  
 
 def excluir_veiculo():
   os.system('cls')
@@ -490,7 +489,7 @@ def menu_inicial():
           print("ERRO! Digite uma opção válida.")
     else:
       print("ERRO! Digite uma opção válida")
-      
-menu_inicial()
-# menu_principal()
+ 
+if __name__ == '__main__':
+  menu_inicial() 
    
