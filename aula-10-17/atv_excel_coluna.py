@@ -3,7 +3,8 @@ import oracledb
 import pandas as pd
 import datetime
 
-def cria_dataframe():
+
+def cria_dataframe_todas_colunas() -> pd.DataFrame:
     lista_dados = []
     inst_consulta.execute("SELECT * FROM tbl_petshop")
     data = inst_consulta.fetchall()
@@ -77,9 +78,7 @@ while conexao:
                 # Gera a planilha
                 gerar_planilha = input("\nGerar Planilha? [s]im ou [n]ão? ")
                 if gerar_planilha.lower() == 's':
-
                     data = datetime.datetime.now()
-
                     # nome_arquivo = input("\nNome do arquivo: ") or "planilha"
                     nome_arquivo = ("planilha" + f"{data.year}{data.month}{data.day}{data.hour}{data.minute}{data.second}")
                     dados_df.to_excel(nome_arquivo + ".xlsx", index=False)
@@ -135,6 +134,7 @@ while conexao:
                 input("\nPressione enter para adicionar mais colunas... ")
 
             if colunas_exibir: # se existem colunas na lista
+                dados_df = cria_dataframe_todas_colunas()
                 dados_filtrados = dados_df[colunas_exibir]
                 print("\n=== Registros Filtrados ===\n")
                 print(dados_filtrados)
