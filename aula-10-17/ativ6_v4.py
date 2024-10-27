@@ -106,18 +106,29 @@ Retorno: none
 def number_igual(tipo_dado:str):
     os.system('cls')
     
-    if tipo_dado == "data_nasc":
-        texto = "data de nascimento"
+    if tipo_dado == "idade":
+        texto = tipo_dado
+    elif tipo_dado == "data_nasc":
+        texto = "data de nascimento"    
     
-    print(f"== Filtragem: {tipo_dado} do PET (igual) ==")
+    print(f"== Filtragem: {texto} do PET (igual) ==")
+            
     while True:
-        idade = int(input("\nBuscar Pet's com idade igual a: "))
-        if not idade:
+        if tipo_dado == "data_nasc":
+            print(f"\nBuscar Pet's com {texto} igual a : ")
+            dia = int(input("\nDia (xx): "))
+            mes = input("\nMês (xx): ")
+            
+            ano = int(input("\nAno (xxxxx): "))
+            valor = datetime(ano, int(mes), dia).strftime("%d/%m/%Y")
+        else:
+            valor = int(input(f"\nBuscar Pet's com {texto} igual a: "))
+        if not valor:
             print("ERRO! Campo não pode estar vazio.")
         else:
             break
     
-    sql = f"SELECT * FROM petshop WHERE {tipo_dado} = {idade}"
+    sql = f"SELECT * FROM petshop WHERE {tipo_dado} = '{valor}'"
     
     inst_consulta.execute(sql)
     dados = inst_consulta.fetchall()
@@ -126,7 +137,7 @@ def number_igual(tipo_dado:str):
         dados_df = pd.DataFrame(dados, columns=["Id", "Tipo", "Nome", "Idade", "Data de Nascimento", "Data de Cadastro"])
         print(dados_df)
     else:
-        print(f"Não conseguimos encontrar nenhum pet com idade igual a {idade} anos.\n")
+        print(f"Não conseguimos encontrar nenhum pet com {texto} igual a {idade} anos.\n")
         
         
 
@@ -183,10 +194,10 @@ def number_entre(tipo_dado:any):
         if not idade1 or not idade2:
             print("ERRO! Campo não pode estar vazio.")
         else:
-            if idade1 > idade2:
-                aux = idade1
-                idade1 = idade2
-                idade2 = aux
+            # if idade1 > idade2:
+            #     aux = idade1
+            #     idade1 = idade2
+            #     idade2 = aux
             break
     
     sql = f"SELECT * FROM petshop WHERE idade BETWEEN {idade1} AND {idade2}"
