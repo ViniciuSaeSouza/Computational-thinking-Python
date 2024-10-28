@@ -11,3 +11,6 @@ CREATE TABLE petshop (
 
 
 DROP TABLE petshop;
+
+
+SELECT * FROM petshop WHERE data_nasc = TO_DATE('14/03/2014', 'DD/MM/YYYY');
