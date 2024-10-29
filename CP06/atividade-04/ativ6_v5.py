@@ -459,10 +459,11 @@ MENU:
                 # lista os dados 
                 print(dados_df)
                 
-                gerar_planilha = input("Gerar Planilha? [S]im ou [N]ão: ").lower() # CORRIGIR IMPLEMENTAÇÃO DA FUNÇÃO `gerar_planilha()`
-                if gerar_planilha == "s":
+                opcao = input("Gerar Planilha? [S]im ou [N]ão: ").lower() # CORRIGIR IMPLEMENTAÇÃO DA FUNÇÃO `gerar_planilha()`
+                if opcao == "s":
                     nome_arquivo = "planilha" + dia_hora
-                    dados_df.to_excel(nome_arquivo+".xlsx", index=False)
+                    gerar_planilha(dados_df, nome_arquivo)
+                    dados_df.to_excel(nome_arquivo, index=False)
                     print('Dados')
                 else:
                     print("Não queria exportar mesmo...")
