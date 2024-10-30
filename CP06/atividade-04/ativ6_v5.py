@@ -37,11 +37,13 @@ dados_df = [] # Variável definida para atribuir `pandas.DataFrame`
 data_atual = datetime.now()
 ano_atual = datetime.now().year
 
+
 # FUNÇÕES E ROTINAS ----
 
-
 """
-Função: Realiza consulta SQL de todos as colunas e linhas da base de dados `petshop` 
+Função: Realiza consulta SQL de todos as colunas e linhas da base de dados `petshop` e retorna um `DataFrame` ou `None`
+Parâmetros: None
+Retorno: DataFrame ou None
 """
 def cria_dataframe_todas_colunas() -> pd.DataFrame | None:
     lista_dados = []
@@ -61,7 +63,11 @@ def cria_dataframe_todas_colunas() -> pd.DataFrame | None:
         input(f"Erro ao gerar o DataFrame: {e} \nDigite qualquer tecla para retornar: ")
     return dados_df
    
-
+"""
+Procedimento:  Exibe as opções de dados que podem ser filtrados
+Parâmetros: None
+Retorno: None
+"""
 def exibe_sub_menu_filtro() -> None:
     print("""
 1 - Nome do pet (like)
@@ -69,7 +75,13 @@ def exibe_sub_menu_filtro() -> None:
 3 - Data de Nascimento 
 """)
 
-def exibe_sub_menu_number():
+
+"""
+Procedimento: Exibe as opções de filtragem para dados do tipo Number ou Date
+Parâmetros: None
+Retorno: None
+"""
+def exibe_sub_menu_number() -> None:
     print("""
 1 – Igual
 2 – Maior que
